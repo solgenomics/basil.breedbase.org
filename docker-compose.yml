@@ -1,0 +1,20 @@
+version: "3.3"
+
+services:
+  easy_gdb:
+    image: eladvol/volcani_basil:latest
+    container_name: easy_gdb
+    ports:
+      - "8094:80"
+    volumes:
+      - /export/prod/public_basil/downloads:/var/www/html/downloads
+      - /export/prod/public_basil/blast_dbs:/var/www/html/blast_dbs
+  DB:
+    image: eladvol/basil_db:latest
+    container_name: DB
+#    ports:
+#      - "5432:5432"
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=123456
+      - PGDATA=/postgres
